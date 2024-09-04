@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gantt-Demo</title>
+    <script src="./frappe-dist/frappe-gantt.min.js"></script>
+    <link rel="stylesheet" href="./frappe-dist/frappe-gantt.css">
+    <style>
+        /* rect.bar-progress {
+            background-color: #026ec1;
+            color: white;
+        } */
+
+        /* custom class */
+        /* .gantt .bar-milestone .bar {
+            fill: tomato;
+        } */
+
+        .gantt .bar-wrapper .bar {
+            fill: #74f5ea;
+        }
+
+        .gantt .bar-progress {
+            fill: rgb(70, 214, 202);
+        }
+
+        .gantt .bar-label {
+            fill: #fff;
+            /* dominant-baseline: central;
+            font-family: Helvetica;
+            font-size: 13px; */
+            font-weight: 400;
+        }
+
+        /* .gantt .handle {
+            display: none;
+        } */
+    </style>
+</head>
+<body>
+    <!-- <svg id="gantt"></svg> -->
+
+    <!-- <div class="gantt-target dark"> -->
+    <div class="gantt-target">
+        <svg id="gantt"></svg>
+    </div>
+
+    <script>
+        // var tasks = [
+        //     {
+        //         id: 'Task 1',
+        //         name: 'Redesign website',
+        //         start: '2016-12-28',
+        //         end: '2016-12-31',
+        //         progress: 20,
+        //         dependencies: 'Task 2, Task 3'
+        //     },
+        // ]
+        // var gantt = new Gantt("#gantt", tasks);
+
+        // var tasks = [
+        //     {
+        //         id: 'Task 1',
+        //         name: 'Redesign website',
+        //         start: '2016-12-28',
+        //         end: '2016-12-31',
+        //         progress: 20,
+        //         dependencies: 'Task 2, Task 3',
+        //         custom_class: 'bar-milestone' // optional
+        //     }
+        // ]
+        // var gantt = new Gantt("#gantt", tasks);
+
+        var tasks = [
+            {
+                id: 'Task 1',
+                name: '开发',
+                start: '2024-08-28',
+                end: '2024-08-31',
+                progress: 20,
+                dependencies: 'Task 2, Task 3'
+            },
+            {
+                id: 'Task 2',
+                name: '设计',
+                start: '2024-08-25',
+                end: '2024-08-26',
+                progress: 80,
+                dependencies: 'Task 3'
+            },
+            {
+                id: 'Task 3',
+                name: '调研',
+                start: '2024-08-16',
+                end: '2024-08-23',
+                progress: 100,
+                dependencies: ''
+            },
+        ]
+        var gantt = new Gantt("#gantt", tasks, {
+            header_height: 50,
+            column_width: 30,
+            step: 24,
+            view_modes: ["Quarter Day", "Half Day", "Day", "Week", "Month"],
+            bar_height: 20,
+            bar_corner_radius: 3,
+            arrow_curve: 5,
+            padding: 18,
+            view_mode: "Day",
+            date_format: "YYYY-MM-DD",
+            language: "zh-CN", // 'en' or 'es', 'it', 'ru', 'ptBr', 'fr', 'tr', 'zh', 'de', 'hu'
+            custom_popup_html: null,
+            on_click: function (task) {
+                console.log(task);
+            },
+            on_date_change: function(task, start, end) {
+                console.log(task, start, end);
+            },
+            on_progress_change: function(task, progress) {
+                console.log(task, progress);
+            },
+            on_view_change: function(mode) {
+                console.log(mode);
+                // alert('view mode changed: ' + mode)
+            }
+        });
+
+        // gantt.change_view_mode('Half Day');
+
+    </script>
+</body>
+</html>
